@@ -1,4 +1,5 @@
 @extends('layouts.main')
+
 @section('navbar')
    @if(Auth::check())
       <ul class="nav">

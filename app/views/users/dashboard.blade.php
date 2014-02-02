@@ -9,7 +9,7 @@
          </ul>
          <ul class="nav">  
             @if(!Auth::check())
-               <li>{{ HTML::link('users/register', 'Register') }}</li>   
+               <li>{{ HTML::link('/register', 'Register') }}</li>   
                <li>{{ HTML::link('/login', 'Login') }}</li>   
             @else
                <li>{{ HTML::link('/logout', 'Logout') }}</li>
@@ -24,7 +24,7 @@
    <div class="span4">
       <div class="span3"><h4><p>Opciones Administración</p></h4></div>
       <ul class="nav">
-         <li class="span3 active">1º opción</li>   
+         <li class="span3 active">{{ HTML::link('/users/register', 'Registro usuarios') }}</li>   
          <li class="span3">2º opción</li>
       </ul>
    </div>

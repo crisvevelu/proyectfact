@@ -22,14 +22,17 @@
 			</div>
 		</div>
 		
-		@yield('navlateral')
+		<div class="row">
+			@yield('navlateral')
 
-		<div class="container">
-			@if(Session::has('message'))
-				<p class="alert">{{ Session::get('message') }}</p>
-			@endif
-
-			@yield('content')
+			<div class="span12">
+				<div class="row">
+					@if(Session::has('message'))
+						<p class="alert">{{ Session::get('message') }}</p>
+					@endif
+					@yield('content')
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

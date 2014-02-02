@@ -35,60 +35,57 @@
             <li>{{ $error }}</li>
          @endforeach
       </ul>
-
       {{ Form::label('cif', 'CIF/NIF') }}
       {{ Form::text('cif', null, array('class'=>'input-block-level', 'placeholder'=>'CIF / NIF')) }}
       <span class="help-block">{{ $errors->first('cif') }}</span>
 
-      {{ Form::label('razonsocial', 'Razon Social') }}
-      {{ Form::text('razonsocial', null, array('class'=>'input-block-level', 'placeholder'=>'Razon Social')) }}
-      <span class="help-block">{{ $errors->first('razonsocial') }}</span>
+      {{ Form::label('razon_social', 'Razon Social') }}
+      {{ Form::text('razon_social', null, array('class'=>'input-block-level', 'placeholder'=>'Razon Social')) }}
+      <span class="help-block">{{ $errors->first('razon_social') }}</span>
 
       {{ Form::label('direccion1', 'Dirección 1') }}
-      {{ Form::text('direccion1', null, array('class'=>'input-block-level', 'placeholder'=>'Dirección 1')) }}
+      {{ Form::text('direccion1', array('class'=>'input-block-level', 'placeholder'=>'Dirección 1')) }}
       <span class="help-block">{{ $errors->first('direccion1') }}</span>
 
       {{ Form::label('direccion2', 'Dirección 2') }}
-      {{ Form::text('direccion2', null, array('class'=>'input-block-level', 'placeholder'=>'Dirección 2')) }}
+      {{ Form::text('direccion2', array('class'=>'input-block-level', 'placeholder'=>'Dirección 2')) }}
       <span class="help-block">{{ $errors->first('direccion2') }}</span>
 
       {{ Form::label('localidad', 'Localidad') }}
-      {{ Form::text('localidad', null, array('class'=>'input-block-level', 'placeholder'=>'Localidad')) }}
+      {{ Form::text('localidad', array('class'=>'input-block-level', 'placeholder'=>'Localidad')) }}
       <span class="help-block">{{ $errors->first('localidad') }}</span>
 
       {{ Form::label('provincia', 'Provincia') }}
-      {{ Form::text('provincia', null, array('class'=>'input-block-level', 'placeholder'=>'Provincia')) }}
+      {{ Form::text('provincia', array('class'=>'input-block-level', 'placeholder'=>'Provincia')) }}
       <span class="help-block">{{ $errors->first('provincia') }}</span>
 
       {{ Form::label('pais', 'Pais') }}
-      {{ Form::text('pais', null, array('class'=>'input-block-level', 'placeholder'=>'Pais')) }}
+      {{ Form::text('pais', array('class'=>'input-block-level', 'placeholder'=>'Pais')) }}
       <span class="help-block">{{ $errors->first('pais') }}</span>
 
       {{ Form::label('cod_postal', 'Código Postal') }}
-      {{ Form::text('cod_postal', null, array('class'=>'input-block-level', 'placeholder'=>'Código Postal')) }}
+      {{ Form::text('cod_postal', array('class'=>'input-block-level', 'placeholder'=>'Código Postal')) }}
       <span class="help-block">{{ $errors->first('cod_postal') }}</span>
 
       {{ Form::label('telefono1', 'Telefono 1') }}
-      {{ Form::text('telefono1', null, array('class'=>'input-block-level', 'placeholder'=>'Telefono 1')) }}
+      {{ Form::text('telefono1', array('class'=>'input-block-level', 'placeholder'=>'Telefono 1')) }}
       <span class="help-block">{{ $errors->first('telefono1') }}</span>
 
       {{ Form::label('telefono2', 'Telefono 2') }}
-      {{ Form::text('telefono2', null, array('class'=>'input-block-level', 'placeholder'=>'Telefono 2')) }}
+      {{ Form::text('telefono2', array('class'=>'input-block-level', 'placeholder'=>'Telefono 2')) }}
       <span class="help-block">{{ $errors->first('telefono2') }}</span>
 
       {{ Form::label('email', 'E-mail') }}
-      {{ Form::text('email', null, array('class'=>'input-block-level', 'placeholder'=>'E-mail')) }}
+      {{ Form::text('email', array('class'=>'input-block-level', 'placeholder'=>'E-mail')) }}
       <span class="help-block">{{ $errors->first('email') }}</span>
 
       {{ Form::label('p_web', 'Pagina Web') }}
-      {{ Form::text('p_web', null, array('class'=>'input-block-level', 'placeholder'=>'Pagina Web')) }}
+      {{ Form::text('p_web', array('class'=>'input-block-level', 'placeholder'=>'Pagina Web')) }}
       <span class="help-block">{{ $errors->first('p_web') }}</span>
 
       {{ Form::label('logo', 'Logo') }}
-      <!--{{ Form::text('logo', null, array('class'=>'input-block-level', 'placeholder'=>'Logo')) }}-->
+      {{ Form::text('logo', array('class'=>'input-block-level', 'placeholder'=>'Logo')) }}
       <span class="help-block">{{ $errors->first('logo') }}</span>
-
-      {{ Form::file('image') }}
 
       {{ Form::label('estado_cliente', 'Estado Cliente') }}
       {{ Form::select('estado_cliente', array(
