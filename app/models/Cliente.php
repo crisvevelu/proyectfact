@@ -1,8 +1,10 @@
 <?php
-
 class Cliente extends Eloquent {
 
 	protected $table = 'clientes';
+	public $timestamps = false;
+	//Forzar el cambio de la clave primaria, sirve para forzar a cambiar el id (por defecto) por otro campo
+	protected $primaryKey = 'codcliente';
 
 	public static $rules = array(
 		'cif' => 'required|alpha|min:2',

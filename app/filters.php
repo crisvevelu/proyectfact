@@ -78,3 +78,9 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+
+Route::filter('admin', function() {
+	//if (!User::isAdmin()) return Redirect::to('users/dashboard');
+	if (Session::get('user_type') != 2) return Redirect::to('users/dashboard');
+});

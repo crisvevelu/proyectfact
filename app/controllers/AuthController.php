@@ -16,6 +16,8 @@
 				$email = Input::get('email');
 				if($user = User::where('email', '=', $email)->first() ) {
 					Session::put('id', $user->id);
+					Session::put('username', $user->username);
+					Session::put('user_type', $user->tipo_user);
 
 					return Redirect::to('users/dashboard')->with('message', '¡Estas dentro!');
 				}

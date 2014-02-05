@@ -25,8 +25,14 @@ Route::post('login', 'AuthController@postSignin');
 
 Route::group(array('before' => 'auth'), function() {
 	Route::get('/', 'WebController@action_index');
+	
+	Route::get('admin', array('before' => 'admin', function() {
+		return View::make('admin.index');
+	}));
+
 	Route::controller('users', 'UsersController');
 	Route::controller('clientes', 'ClientesController');
+	Route::get('/ocultar/{codcliente}', 'ClientesController@postOcultar');
 
 	Route::get('users', 'UsersController@getDashboard');
 

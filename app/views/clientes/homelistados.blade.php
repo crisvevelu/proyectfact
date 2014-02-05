@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('titulo')
-   <title>{{ $clientes->razonsocial }}</title>
+   <title></title>
 @stop
 @section('navbar')
    <ul class="nav">
@@ -29,8 +29,9 @@
 @stop
 @section('content')
 
-   <h1>{{ $clientes->razonsocial }}</h1>
+   <h1>Listados</h1>
 
-{{ $clientes->email }}
+{{ HTML::link('clientes/generar', 'Generar Listado') }}
+
 
 @stop

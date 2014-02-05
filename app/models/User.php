@@ -19,6 +19,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		else
 			return false;
 	}
+
+	public static function isAdmin() {
+		if(Session::get('user_type') == 2)
+			return true;
+		else
+			return false;
+	}
 	
 	/**
 	 * The database table used by the model.

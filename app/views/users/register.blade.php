@@ -16,6 +16,19 @@
       @endif
    </ul>
 @stop
+
+@section('navlateral')
+   <div class="span4">
+      <div class="span3"><h4><p>Opciones Administración</p></h4></div>
+      <ul class="nav">
+         <li class="span3 active">{{ HTML::link('/users/register', 'Registro usuarios') }}</li>   
+         @if(Session::get('user_type') == 2)
+            <li class="span3">{{ HTML::link('admin', 'Administración') }}</li>
+         @endif
+      </ul>
+   </div>
+@stop
+
 @section('content')
 
    {{ Form::open(array('url'=>'users/create', 'class'=>'form-signup')) }}
@@ -39,7 +52,7 @@
          'Tipo de Usuario' => array(
             '1' => 'Gestíon', 
             '2' => 'Administración'
-         )), array('class' => 'form-control')) }}
+         )), array(1), array('class' => 'form-control')) }}
          <span class="help-block">{{ $errors->first('tipo_user') }}</span>
     
       {{ Form::submit('Registro', array('class'=>'btn btn-large btn-primary btn-block'))}}

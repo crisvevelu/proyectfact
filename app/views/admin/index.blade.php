@@ -7,7 +7,6 @@
          <ul class="nav">  
             <li>{{ HTML::link('clientes/listar', 'Clientes') }}</li>
             <li>{{ HTML::link('users/dashboard', 'Usuario: '. Session::get('username')) }}</li>
-            
          </ul>
          <ul class="nav">  
             @if(!Auth::check())
@@ -26,22 +25,15 @@
    <div class="span4">
       <div class="span3"><h4><p>Opciones Administración</p></h4></div>
       <ul class="nav">
-         <li class="span3">1º opcion</li>   
+         <li class="span3 active">{{ HTML::link('/users/register', 'Registro usuarios') }}</li>   
          <li class="span3">2º opción</li>
-         @if(Session::get('user_type') == 2)
-            <li class="span3">{{ HTML::link('admin', 'Administración') }}</li>
-         @endif
       </ul>
    </div>
 @stop
 
 @section('content')
 
-   <h1>Dashboard</h1>
+   <h1>Administración</h1>
    <p>Welcome to your Dashboard. You rock!</p>
-
-   {{ Session::get('id')}}
-   {{ Session::get('username')}}
-   {{ Session::get('user_type')}}
 
 @stop
