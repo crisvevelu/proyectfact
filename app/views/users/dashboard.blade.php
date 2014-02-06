@@ -11,7 +11,7 @@
          </ul>
          <ul class="nav">  
             @if(!Auth::check())
-               <li>{{ HTML::link('/register', 'Register') }}</li>   
+               <li>{{ HTML::link('/admin/register', 'Register') }}</li>   
                <li>{{ HTML::link('/login', 'Login') }}</li>   
             @else
                <li>{{ HTML::link('/logout', 'Logout') }}</li>
@@ -24,14 +24,20 @@
 
 @section('navlateral')
    <div class="span4">
-      <div class="span3"><h4><p>Opciones Administración</p></h4></div>
+      <div class="span3"><h4><p>Opciones</p></h4></div>
       <ul class="nav">
          <li class="span3">1º opcion</li>   
          <li class="span3">2º opción</li>
-         @if(Session::get('user_type') == 2)
-            <li class="span3">{{ HTML::link('admin', 'Administración') }}</li>
-         @endif
       </ul>
+
+      @if(Session::get('user_type') == 2)
+         <div class="span3"><h4><p>Opciones Administración</p></h4></div>
+         <ul class="nav">
+         
+            <li class="span3">{{ HTML::link('admin', 'Administración') }}</li>
+            <li class="span3">{{ HTML::link('/admin/register', 'Registro usuarios') }}</li>
+         </ul>
+      @endif
    </div>
 @stop
 

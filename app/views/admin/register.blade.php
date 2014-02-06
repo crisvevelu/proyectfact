@@ -4,7 +4,7 @@
    @if(Auth::check())
       <ul class="nav">
          <li>{{ HTML::link('clientes/listar', 'Clientes') }}</li>
-         <li>{{ HTML::link('users/dashboard', 'Administración') }}</li>
+         <li>{{ HTML::link('users/dashboard', 'Usuario: '. Session::get('username')) }}</li>
       </ul>
    @endif
    <ul class="nav">  
@@ -21,7 +21,7 @@
    <div class="span4">
       <div class="span3"><h4><p>Opciones Administración</p></h4></div>
       <ul class="nav">
-         <li class="span3 active">{{ HTML::link('/users/register', 'Registro usuarios') }}</li>   
+         <li class="span3 active">{{ HTML::link('/admin/register', 'Registro usuarios') }}</li>   
          @if(Session::get('user_type') == 2)
             <li class="span3">{{ HTML::link('admin', 'Administración') }}</li>
          @endif

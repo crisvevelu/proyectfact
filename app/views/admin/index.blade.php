@@ -25,7 +25,7 @@
    <div class="span4">
       <div class="span3"><h4><p>Opciones Administración</p></h4></div>
       <ul class="nav">
-         <li class="span3 active">{{ HTML::link('/users/register', 'Registro usuarios') }}</li>   
+         <li class="span3">{{ HTML::link('/admin/register', 'Registro usuarios') }}</li>
          <li class="span3">2º opción</li>
       </ul>
    </div>

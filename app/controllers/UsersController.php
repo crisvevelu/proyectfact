@@ -7,7 +7,7 @@
 			$this->beforeFilter('csrf', array('on'=>'post'));
 			$this->beforeFilter('auth', array('only'=>array('getDashboard')));
 		}
-
+/*
 		public function getRegister() {
 			$this->layout->content = View::make('users.register');
 		}
@@ -33,6 +33,8 @@
 				return Redirect::to('/users/register')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
 			}
 		}
+
+*/
 
 		public function getDashboard() {
 			$this->layout->content = View::make('users.dashboard');
