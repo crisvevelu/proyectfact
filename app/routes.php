@@ -31,9 +31,18 @@ Route::group(array('before' => 'auth'), function() {
 		Route::get('admin', array('before' => 'admin', function() {
 			return View::make('admin.index');
 		}));
+
+		Route::get('admin/usuarios/delete/{id}', 'AdminController@getDelete');
+		Route::get('admin/usuarios/register', 'AdminController@getRegister');
+		Route::get('/admin/clientes/mostar/{codcliente}', 'AdminController@getMostrar');
+		Route::get('/admin/clientes/archivar/{codcliente}', 'AdminController@postArchivar');
+		Route::get('/admin/clientes/antiguos/', 'AdminController@getAntiguos');
+		Route::get('/admin/clientes/modificar/{codcliente}', 'AdminController@getModificar');
+		Route::post('/admin/clientes/modificar/{codcliente}', 'AdminController@postModificar');
 		Route::controller('admin', 'AdminController');
 	});
 
+	Route::post('/clientes/anadir/anadirmasiva', 'ClientesController@postAnadirmasiva');
 	Route::controller('users', 'UsersController');
 	Route::controller('clientes', 'ClientesController');
 	Route::get('/ocultar/{codcliente}', 'ClientesController@postOcultar');

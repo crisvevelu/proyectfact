@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('titulo')
-   <title>Clientes</title>
+   <title>Administración Clientes</title>
 @stop
 @section('navbar')
    <ul class="nav">
@@ -20,11 +20,19 @@
 
 @section('navlateral')
    <div class="span4">
-      <div class="span3"><h4><p>Prueba de columna lateral</p></h4></div>
+      <div class="span3"><h4><p>Opciones Administración</p></h4></div>
       <ul class="nav">
-         <li class="span3">{{ HTML::link('clientes/listar', 'Listar Clientes') }}</li>   
-         <li class="span3">{{ HTML::link('clientes/anadir', 'Añadir Nuevos Clientes') }}</li>
-         <li class="span3 active">{{ HTML::link('clientes/clistado', 'Crear Listado') }}</li>
+        @if(Session::get('user_type') == 2)
+            <li class="span3">{{ HTML::link('admin', 'Administración') }}</li>
+        @endif
+        <li class="span3">{{ HTML::link('/admin/clientes', 'Clientes') }}</li>
+        <li class="span3">{{ HTML::link('/admin/usuarios', 'Usuarios') }}</li> 
+      </ul>
+
+      <div class="span3"><h4><p>Opciones Clientes</p></h4></div>
+      <ul class="nav">
+         <li class="span3">{{ HTML::link('admin/clientes', 'Listado') }}</li>
+         <li class="span3">{{ HTML::link('admin/clientes/antiguos', 'Clientes Antiguos') }}</li>
       </ul>
    </div>
 @stop
@@ -32,7 +40,7 @@
   @if(empty($clientes)) 
     <p>No hay clientes disponibles</p>
   @else 
-     <h1>Listar Clientes</h1>
+     <h1>Listado de Clientes</h1>
    
     <table class="table table-striped">
       <tr>
@@ -46,7 +54,7 @@
           <th>Acciones</th>
       </tr>
       @foreach ($clientes as $cliente)
-        @if($cliente->estado == 1)
+        @if ($cliente->estado == 1)
           <tr>
             <td>{{ $cliente->codcliente }}</td>
             <td>{{ $cliente->cif }}</td>
@@ -55,7 +63,9 @@
             <td>{{ $cliente->provincia }}</td>
             <td>{{ $cliente->telefono1 }}</td>
             <td>{{ $cliente->email }}</td>
-            <td>{{ HTML::link('#', 'Modificar', array('class' => 'btn btn-primary')) }} {{ HTML::link('ocultar/'.$cliente->codcliente, 'Archivar cliente', array('class' => 'btn btn-primary')) }}</td>
+            <td>{{ HTML::link('/admin/clientes/modificar/'.$cliente->codcliente, 'Modificar', array('class' => 'btn btn-primary')) }}
+                {{ HTML::link('/admin/clientes/archivar/'.$cliente->codcliente, 'Archivar Cliente', array('class' => 'btn btn-primary')) }}
+            </td>
           </tr>
         @endif
       @endforeach

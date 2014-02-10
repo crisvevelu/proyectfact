@@ -21,24 +21,27 @@
    <div class="span4">
       <div class="span3"><h4><p>Opciones Administración</p></h4></div>
       <ul class="nav">
-         <li class="span3 active">{{ HTML::link('/admin/register', 'Registro usuarios') }}</li>   
-         @if(Session::get('user_type') == 2)
+        @if(Session::get('user_type') == 2)
             <li class="span3">{{ HTML::link('admin', 'Administración') }}</li>
-         @endif
+        @endif
+        <li class="span3">{{ HTML::link('/admin/clientes', 'Clientes') }}</li>
+         <li class="span3">{{ HTML::link('/admin/usuarios', 'Usuarios') }}</li>
+      </ul>
+
+      <div class="span3"><h4><p>Opciones Usuarios</p></h4></div>
+      <ul class="nav">
+         <li class="span3">{{ HTML::link('admin/usuarios', 'Listar  Usuarios') }}</li>
+         <li class="span3">{{ HTML::link('admin/usuarios/register', 'Añadir Usuario') }}</li>
       </ul>
    </div>
 @stop
 
 @section('content')
 
-   {{ Form::open(array('url'=>'users/create', 'class'=>'form-signup')) }}
+   {{ Form::open(array('url'=>'admin/create', 'class'=>'form-signup')) }}
       <h2 class="form-signup-heading">Por Favor Registrate</h2>
     
-      <ul>
-         @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-         @endforeach
-      </ul>
+      
     
       {{ Form::text('username', null, array('class'=>'input-block-level', 'placeholder'=>'Nombre Usuario')) }}
       <span class="help-block">{{ $errors->first('username') }}</span>

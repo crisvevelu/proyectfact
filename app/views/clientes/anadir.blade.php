@@ -28,14 +28,14 @@
    </div>
 @stop
 @section('content')
-   {{ Form::open(array('url'=>'clientes/anadir', 'class'=>'form-signup')) }}
+   {{ Form::open(array('url'=>'clientes/anadir', 'class'=>'form')) }}
    <h2 class="form-signup-heading">Añadir Clientes</h2>
       <ul>
          @foreach($errors->all() as $error)
             <li>{{ $error }}</li>
          @endforeach
       </ul>
-
+       <div class="span5 row">
       {{ Form::label('cif', 'CIF/NIF') }}
       {{ Form::text('cif', null, array('class'=>'input-block-level', 'placeholder'=>'CIF / NIF')) }}
       <span class="help-block">{{ $errors->first('cif') }}</span>
@@ -63,6 +63,9 @@
       {{ Form::label('pais', 'Pais') }}
       {{ Form::text('pais', null, array('class'=>'input-block-level', 'placeholder'=>'Pais')) }}
       <span class="help-block">{{ $errors->first('pais') }}</span>
+
+      </div>
+      <div class="span5 row">
 
       {{ Form::label('cod_postal', 'Código Postal') }}
       {{ Form::text('cod_postal', null, array('class'=>'input-block-level', 'placeholder'=>'Código Postal')) }}
@@ -99,7 +102,16 @@
          <span class="help-block">{{ $errors->first('estado_cliente') }}</span>
     
       {{ Form::submit('Añadir', array('class'=>'btn btn-large btn-primary btn-block'))}}
+      </div>
    {{ Form::close() }}
 
+   <div class="span5 row">
+      {{ Form::open(array('url'=>'clientes/anadir/anadirmasiva', 'files' => 'true', 'class'=>'form')) }}
+         {{ Form::label('smasiva', 'Subida Masiva') }}
+         {{ Form::file('smasiva') }}
+         <span class="help-block">{{ $errors->first('smasiva') }}</span>
+         {{ Form::submit('Añadir', array('class'=>'btn btn-large btn-primary btn-block'))}}
+      {{ Form::close() }}
+   </div>
 
 @stop

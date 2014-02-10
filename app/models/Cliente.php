@@ -7,10 +7,10 @@ class Cliente extends Eloquent {
 	protected $primaryKey = 'codcliente';
 
 	public static $rules = array(
-		'cif' => 'required|alpha|min:2',
+		'cif' => 'required|alpha|min:2|unique:clientes',
 		'razonsocial' => 'required|unique:clientes',
 		'direccion1' => 'required',
-		'direccion2' => 'alpha_num',
+		'direccion2' => '',
 		'localidad' => '',
 		'provincia' => '',
 		'pais' => '',

@@ -7,6 +7,10 @@
 			$this->beforeFilter('csrf', array('on'=>'post'));
 			$this->beforeFilter('auth', array('only'=>array('getDashboard')));
 		}
+
+		public function getDashboard() {
+			$this->layout->content = View::make('users.dashboard');
+		}
 /*
 		public function getRegister() {
 			$this->layout->content = View::make('users.register');
@@ -34,10 +38,6 @@
 			}
 		}
 
-*/
-
-		public function getDashboard() {
-			$this->layout->content = View::make('users.dashboard');
-		}
+*/		
 	}
 ?>

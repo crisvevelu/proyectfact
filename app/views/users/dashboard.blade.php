@@ -28,16 +28,12 @@
       <ul class="nav">
          <li class="span3">1º opcion</li>   
          <li class="span3">2º opción</li>
+         @if(User::isAdmin())
+            <li class="span3"> {{ HTML::link('admin', 'Administración')}}</li>
+         @endif
       </ul>
 
-      @if(Session::get('user_type') == 2)
-         <div class="span3"><h4><p>Opciones Administración</p></h4></div>
-         <ul class="nav">
-         
-            <li class="span3">{{ HTML::link('admin', 'Administración') }}</li>
-            <li class="span3">{{ HTML::link('/admin/register', 'Registro usuarios') }}</li>
-         </ul>
-      @endif
+      
    </div>
 @stop
 
