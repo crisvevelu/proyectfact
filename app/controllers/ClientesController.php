@@ -82,7 +82,14 @@ header('Content-Type: text/html; charset=UTF-8');
 							<meta charset="utf-8">
 						</head>
 						<body>
-							<table class="table table-striped">';
+							<table class="table table-striped" border="1">
+								<tr><td>Codigo Cliente</td>
+								<td>CIF / NIF</td>
+								<td>Razon Social</td>
+								<td>Localidad</td>
+								<td>Provincia</td>
+								<td>Telefono</td>
+								<td>Email</td></tr>';
 			 foreach ($clientes as $cliente) {
     		    if($cliente->estado == 1) {
 					
@@ -96,7 +103,7 @@ header('Content-Type: text/html; charset=UTF-8');
 					$html .= '</tr>';
 				}
       		}
-      		$html .= '</table>';
+      		$html .= '</table></body><html>';
 			return PDF::load($html, 'A4', 'landscape')->show();
 		}
 
@@ -122,51 +129,21 @@ header('Content-Type: text/html; charset=UTF-8');
 				$logo = "";
 				$estado = "";
 
-				$datos = array();
+				$datos[][] = array();
 				while (( $data = fgetcsv ( $fh , 1000 , ";" )) !== FALSE ) { // Mientras hay líneas que leer...
-					//$i = 0;
+					//$data = fgetcsv ( $fh , 1000 , ";" );
+					$i = 0;
 					foreach($data as $row) {
 						//$texto .= "Campo $i: $row<br />"; // Muestra todos los campos de la fila actual 
-						//$i++ ;
+
 					
-					$datos = $data[1];
-/*					$razonsocial .= $data[1];
-					$direccion1 .= $data[2];
-					$direccion2 .= $data[3];
-					$localidad .= $data[4];
-					$provincia .= $data[5];
-					$pais .= $data[6];
-					$cpostal .= $data[7];
-					$telefono1 .= $data[8];
-					$telefono2 .= $data[9];
-					$email .= $data[10];
-					$web .= $data[11];
-					$logo .= $data[12];
-					$estado .= $data[13];*/
+					$datos[$i][$row] = $data;
+					$i++ ;
+
 					}
 				}
 				fclose ( $fh );
 
-
-
-/*
-					$cliente = new Cliente;
-					$cliente->cif = $data[0];
-					$cliente->razonsocial = $data[1];
-					$cliente->direccion1 = $data[2];
-					$cliente->direccion2 = $data[3];
-					$cliente->localidad = $data[4];
-					$cliente->provincia = $data[5];
-					$cliente->pais = $data[6];
-					$cliente->cpostal = $data[7];
-					$cliente->telefono1 = $data[8];
-					$cliente->telefono2 = $data[9];
-					$cliente->email = $data[10];
-					$cliente->web = $data[11];
-					$cliente->logo = $data[12];
-					$cliente->estado = $data[13];
-					$cliente->save();
-*/
 				return $datos;
 			}else {
 				return 'Error';

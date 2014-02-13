@@ -58,7 +58,8 @@
             @else
               <td>Administración</td>
             @endif
-            <td>{{ HTML::link('#', 'Modificar', array('class' => 'btn btn-primary')) }} {{ HTML::link('admin/usuarios/delete/'.$usuario->id, 'Eliminar', array('class' => 'btn btn-primary')) }}</td>
+            <td>{{ HTML::link('admin/usuarios/modificar/'.$usuario->id, 'Modificar', array('class' => 'btn btn-primary')) }} 
+                {{ HTML::link('admin/usuarios/delete/'.$usuario->id, 'Eliminar', array('class' => 'btn btn-primary')) }}</td>
           </tr>
       @endforeach
     </table>

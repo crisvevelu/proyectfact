@@ -89,7 +89,8 @@
 		}
 
 		public function postModificar($codcliente) {
-			$cliente = Cliente::where('codcliente', '=', $codcliente)->first();
+			//$cliente = Cliente::where('codcliente', '=', $codcliente)->first();
+			$cliente = Cliente::find($codcliente);
 
 			$mensajes = array (
 				'required' => 'Campo Obligatorio',
@@ -97,7 +98,7 @@
 				'numeric' => 'El campo tiene que ser numerico'
 			);
 
-			$validator = Validator::make(Input::all(), Cliente::$rules, $mensajes);
+			$validator = Validator::make(Input::all(), Cliente::$rules_modificacion, $mensajes);
 
 			if ($validator->passes()) {
 
@@ -126,6 +127,40 @@
 			} else {
 				return Redirect::back()->with('message', 'Hay errores:')->withErrors($validator)->withInput();
 			}
-		}	
+		}
+
+		public function getModificaruser($id) {
+			$usuario = User::find($id);
+			return View::make('/admin/usuarios/modificar')->with('usuario', $usuario);
+		}
+
+		public function postModificaruser($id) {
+			
+			$usuario = User::find($id);
+
+			$mensajes = array (
+				'required' => 'Campo Obligatorio',
+				'alpha' => 'El campo :attribute tiene que contener caracteres',
+				'numeric' => 'El campo tiene que ser numerico'
+			);
+
+			$validator = Validator::make(Input::all(), User::$rules_modificacion, $mensajes);
+
+			if ($validator->passes()) {
+				$usuario->username = Input::get('username');
+				if ( $usuario->email != Input::get('email') ) {
+					$usuario->email = Input::get('email');
+				}
+				if(Input::has('password')) {
+					$usuario->password = Hash::make(Input::get('password'));
+				}
+				$usuario->tipo_user = Input::get('tipo_user');
+				$usuario->save();
+				
+				return Redirect::to('/admin/usuarios')->with('message', 'Usuario modificado');
+			} else {
+				return Redirect::back()->with('message', 'Hay errores:')->withErrors($validator)->withInput();
+			}
+		}
 	}
 ?>

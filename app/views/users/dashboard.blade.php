@@ -6,16 +6,10 @@
 @section('navbar')
          <ul class="nav">  
             <li>{{ HTML::link('clientes/listar', 'Clientes') }}</li>
-            <li>{{ HTML::link('users/dashboard', 'Usuario: '. Session::get('username')) }}</li>
-            
          </ul>
-         <ul class="nav">  
-            @if(!Auth::check())
-               <li>{{ HTML::link('/admin/register', 'Register') }}</li>   
-               <li>{{ HTML::link('/login', 'Login') }}</li>   
-            @else
+         <ul class="nav">
+               <li>{{ HTML::link('users/dashboard', 'Usuario: '. Session::get('username')) }}</li>
                <li>{{ HTML::link('/logout', 'Logout') }}</li>
-            @endif
          </ul>
 @stop
       </div>

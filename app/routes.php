@@ -39,6 +39,8 @@ Route::group(array('before' => 'auth'), function() {
 		Route::get('/admin/clientes/antiguos/', 'AdminController@getAntiguos');
 		Route::get('/admin/clientes/modificar/{codcliente}', 'AdminController@getModificar');
 		Route::post('/admin/clientes/modificar/{codcliente}', 'AdminController@postModificar');
+		Route::get('/admin/usuarios/modificar/{id}', 'AdminController@getModificaruser');
+		Route::post('/admin/usuarios/modificar/{id}', 'AdminController@postModificaruser');
 		Route::controller('admin', 'AdminController');
 	});
 

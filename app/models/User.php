@@ -13,6 +13,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'tipo_user'				=> 'in:1,2',
 	);
 
+	public static $rules_modificacion = array(
+		'username'				=> 'required|alpha|min:2',
+		'email'					=> 'required|email',
+		'password'				=> 'alpha_num|between:6,12|confirmed',
+		'password_confirmation'	=> 'alpha_num|between:6,12|same:password',
+		'tipo_user'				=> 'in:1,2',
+	);
+
 	public static function isLogged() {
 		if(Session::has('id'))
 			return true;

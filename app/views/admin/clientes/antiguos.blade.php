@@ -33,6 +33,7 @@
       <ul class="nav">
          <li class="span3">{{ HTML::link('admin/clientes', 'Listado') }}</li>
          <li class="span3">{{ HTML::link('admin/clientes/antiguos', 'Clientes Antiguos') }}</li>
+         <li class="span3">{{ HTML::link('admin/clientes/gestlistados', 'Gestionar Listados') }}</li>
       </ul>
    </div>
 @stop
