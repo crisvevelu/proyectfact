@@ -6,6 +6,7 @@
 @section('navbar')
    <ul class="nav">
       <li>{{ HTML::link('clientes/listar', 'Clientes') }}</li>
+      <li>{{ HTML::link('productos/listar', 'Productos') }}</li>
       <li>{{ HTML::link('users/dashboard', 'Usuario: '. Session::get('username')) }}</li>
    </ul>
    <ul class="nav">  

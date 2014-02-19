@@ -41,6 +41,10 @@ Route::group(array('before' => 'auth'), function() {
 		Route::post('/admin/clientes/modificar/{codcliente}', 'AdminController@postModificar');
 		Route::get('/admin/usuarios/modificar/{id}', 'AdminController@getModificaruser');
 		Route::post('/admin/usuarios/modificar/{id}', 'AdminController@postModificaruser');
+		Route::get('/admin/productos/listar', 'AdminController@getMostrarProductos');
+		Route::get('/admin/productos/eliminar/{id}', 'AdminController@getEliminarProducto');
+		Route::get('/admin/productos/modificar/{id}', 'AdminController@getModificarProductos');
+		Route::post('/admin/productos/modificar/{id}', 'AdminController@postModificarProductos');
 		Route::controller('admin', 'AdminController');
 	});
 
@@ -52,6 +56,13 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('users', 'UsersController@getDashboard');
 
 	Route::get('logout', 'AuthController@getLogout');
+	Route::get('/listar', 'ProductoController@getListar');
+
+	Route::get('/productos/anadir', 'ProductoController@getAnadir');
+	Route::post('/productos/anadir', 'ProductoController@postAnadir');
+	Route::get('/productos/modificar/{id}', 'ProductoController@getModificar');
+	Route::post('/productos/modificar/{id}', 'ProductoController@postModificar');
+	Route::controller('productos', 'ProductoController');
 });
 
 /*

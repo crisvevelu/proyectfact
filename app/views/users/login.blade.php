@@ -4,6 +4,7 @@
    @if(Auth::check())
       <ul class="nav">
          <li>{{ HTML::link('clientes/listar', 'Clientes') }}</li>
+         <li>{{ HTML::link('productos/listar', 'Productos') }}</li>
          <li>{{ HTML::link('users/dashboard', 'Administración') }}</li>
       </ul>
    @endif

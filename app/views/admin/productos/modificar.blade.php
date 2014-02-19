@@ -1,0 +1,68 @@
+@extends('layouts.main') <!--para usar la estructura indicada en layouts/main.blade.php-->
+@section('titulo')<!--Titulo que queremos que aparezca en nuestra página-->
+   <title>Modificar Productos</title>
+@stop
+<!--menu de navegación (superior)-->
+@section('navbar')
+   <ul class="nav">
+      <li>{{ HTML::link('clientes/listar', 'Clientes') }}</li>
+      <li>{{ HTML::link('productos/listar', 'Productos') }}</li>
+      <li>{{ HTML::link('users/dashboard', 'Usuario: '. Session::get('username')) }}</li>
+   </ul>
+   <ul class="nav">  
+      @if(!Auth::check())
+         <li>{{ HTML::link('/register', 'Register') }}</li>   
+         <li>{{ HTML::link('/login', 'Login') }}</li>   
+      @else
+         <li>{{ HTML::link('/logout', 'Logout') }}</li>
+      @endif
+   </ul>
+@stop
+<br /><br />
+<!--Menu lateral -->
+@section('navlateral')
+   <div class="span4">
+      <div class="span3"><h4><p>Opciones Administración</p></h4></div>
+      <ul class="nav">
+        @if(Session::get('user_type') == 2)
+            <li class="span3">{{ HTML::link('admin', 'Administración') }}</li>
+        @endif
+        <li class="span3">{{ HTML::link('/admin/clientes', 'Clientes') }}</li>
+        <li class="span3">{{ HTML::link('/admin/usuarios', 'Usuarios') }}</li> 
+        <li class="span3">{{ HTML::link('/admin/productos', 'Productos') }}</li>
+      </ul>
+
+      <div class="span3"><h4><p>Opciones Productos</p></h4></div>
+      <ul class="nav">
+         <li class="span3">{{ HTML::link('admin/productos/listar', 'Listado') }}</li>
+      </ul>
+   </div>
+@stop
+<!--Contenido-->
+@section('content')
+	<!--Formulario-->
+   {{ Form::open(array('url'=>'/admin/productos/modificar/'. $producto->id, 'files'=>true ,'class'=>'form')) }}
+   <h2 class="form-signup-heading">Modificar Producto</h2>
+      <div>
+      	{{ Form::label('nombre', 'Nombre:') }}
+      	{{ Form::text('nombre', $producto->nombre, array('class'=>'input-block-level', 'placeholder'=>'Nombre')) }}
+      	<span class="help-block">{{ $errors->first('nombre') }}</span>
+
+      	{{ Form::label('cantidad', 'Cantidad:') }}
+      	{{ Form::text('cantidad', $producto->cantidad, array('class'=>'input-block-level', 'placeholder'=>'Cantidad de productos')) }}
+      	<span class="help-block">{{ $errors->first('cantidad') }}</span>
+
+		{{ Form::label('descripcion', 'Descripción:') }}
+      	{{ Form::textarea('descripcion', $producto->descripcion, array('class'=>'input-block-level', 'placeholder'=>'Introduzca una breve descripcion del producto')) }}
+      	<span class="help-block">{{ $errors->first('descripcion') }}</span>
+
+      	{{ Form::label('imagen', 'Imagen:') }}
+      	{{ Form::file('imagen') }}
+      	<span class="help-block">{{ $errors->first('imagen') }}</span>
+
+        {{ Form::submit('Añadir', array('class'=>'btn btn-large btn-primary btn-block'))}}
+      	{{ Form::close() }}
+
+
+     </div>
+@stop

@@ -162,5 +162,77 @@
 				return Redirect::back()->with('message', 'Hay errores:')->withErrors($validator)->withInput();
 			}
 		}
+		/**
+		* Funciones productos
+		*/
+		public function getProductos() {
+			$productos= Producto::all();
+			return View::make('admin.productos.listar')->with('productos', $productos);
+		}
+		public function getMostrarProductos()
+		{
+			//metodo para obtener todos los productos
+			$productos= Producto::all();
+			return View::make('admin.productos.listar')->with('productos', $productos);
+
+		}
+
+		public function getModificarProductos($id)
+		{
+			//metodo para modificar productos
+			$producto = Producto::find($id);
+			return View::make('admin.productos.modificar')->with('producto', $producto);
+		}
+		public function postModificarProductos($id)
+		{
+			//metodo para obtener la modificacion productos
+			$producto = Producto::find($id);
+			$mensajes = array (
+					'required' => 'Campo Obligatorio',
+					'numeric' => 'El campo tiene que ser numerico'
+				);
+			//validamos que los datos cumplan los requisitos del modelo
+			$validator= Validator::make(Input::all(), Producto::$rules, $mensajes);
+			if ($validator->passes()) {
+				#si la validacion no falla
+				//comprobamos que imagen es un archivo
+				if(Input::hasFile('imagen')){
+					//almacenamos la imagen en una variable
+					$file= Input::file('imagen');
+					$destinationPath ='uploads/';
+					$filename= $file->getClientOriginalName();
+					$upload_success=$file->move($destinationPath, $filename);
+					if($upload_success){
+						$producto->nombre = Input::get('nombre');
+						$producto->cantidad = Input::get('cantidad');
+						$producto->descripcion = Input::get('descripcion');
+						$producto->imagen = $destinationPath . $filename;
+						$producto->save();
+						return Redirect::to('admin/productos/listar')->with('message', 'Producto modificado correctamente');
+					}else{
+						return Redirect::to('admin/productos/modificar')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
+					}
+				}
+				
+				$producto->nombre = Input::get('nombre');
+				$producto->cantidad = Input::get('cantidad');
+				$producto->descripcion = Input::get('descripcion');		
+				$producto->save();
+				return Redirect::to('admin/productos/listar')->with('message', 'Producto modificado correctamente');
+			}else{
+				return Redirect::to('admin/productos/modificar')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
+			}
+		}
+		public function getEliminarProducto($id)
+		{
+			//funcion para elminar el producto por id
+			$producto=Producto::find($id);
+			if (is_null($producto)){
+				App::abort(404);
+			}
+			$producto->delete();
+			return Redirect::to('admin/productos/listar')->with('message', 'Producto eliminado correctamente');
+		}
+
 	}
 ?>

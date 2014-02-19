@@ -6,6 +6,7 @@
 @section('navbar')
          <ul class="nav">  
             <li>{{ HTML::link('clientes/listar', 'Clientes') }}</li>
+            <li>{{ HTML::link('productos/listar', 'Productos') }}</li>
             <li>{{ HTML::link('users/dashboard', 'Usuario: '. Session::get('username')) }}</li>
          </ul>
          <ul class="nav">  
@@ -27,6 +28,7 @@
       <ul class="nav">
          <li class="span3">{{ HTML::link('/admin/clientes/listar', 'Clientes') }}</li>
          <li class="span3">{{ HTML::link('/admin/usuarios', 'Usuarios') }}</li>
+         <li class="span3">{{ HTML::link('/admin/productos/listar', 'Productos') }}</li>
       </ul>
    </div>
 @stop
