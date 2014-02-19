@@ -56,7 +56,7 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('users', 'UsersController@getDashboard');
 
 	Route::get('logout', 'AuthController@getLogout');
-	Route::get('/listar', 'ProductoController@getListar');
+	Route::get('/productos/listar', 'ProductoController@getListar');
 
 	Route::get('/productos/anadir', 'ProductoController@getAnadir');
 	Route::post('/productos/anadir', 'ProductoController@postAnadir');

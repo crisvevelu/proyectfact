@@ -48,9 +48,9 @@ class ProductoController extends BaseController
 					$producto->descripcion = Input::get('descripcion');
 					$producto->imagen = $destinationPath . $filename;
 					$producto->save();
-					return Redirect::to('/listar')->with('message', 'Añadido nuevo producto');
+					return Redirect::to('/productos/listar')->with('message', 'Añadido nuevo producto');
 				}else{
-					return Redirect::to('/anadir')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
+					return Redirect::to('/productos/anadir')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
 				}
 			}
 			$producto = new Producto();
@@ -58,9 +58,9 @@ class ProductoController extends BaseController
 			$producto->cantidad = Input::get('cantidad');
 			$producto->descripcion = Input::get('descripcion');		
 			$producto->save();
-			return Redirect::to('/listar')->with('message', 'Añadido nuevo producto');
+			return Redirect::to('/productos/listar')->with('message', 'Añadido nuevo producto');
 		}else{
-			return Redirect::to('/anadir')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
+			return Redirect::to('/productos/anadir')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
 		}
 	}	
 	public function getModificar($id)
@@ -95,9 +95,9 @@ class ProductoController extends BaseController
 					$producto->descripcion = Input::get('descripcion');
 					$producto->imagen = $destinationPath . $filename;
 					$producto->save();
-					return Redirect::to('/listar')->with('message', 'Producto modificado correctamente');
+					return Redirect::to('/productos/listar')->with('message', 'Producto modificado correctamente');
 				}else{
-					return Redirect::to('/modificar')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
+					return Redirect::to('/productos/modificar')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
 				}
 			}
 			
@@ -105,9 +105,9 @@ class ProductoController extends BaseController
 			$producto->cantidad = Input::get('cantidad');
 			$producto->descripcion = Input::get('descripcion');		
 			$producto->save();
-			return Redirect::to('/listar')->with('message', 'Producto modificado correctamente');
+			return Redirect::to('/productos/listar')->with('message', 'Producto modificado correctamente');
 		}else{
-			return Redirect::to('/modificar')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
+			return Redirect::to('/productos/modificar')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
 		}
 
 	}
