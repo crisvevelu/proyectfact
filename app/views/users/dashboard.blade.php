@@ -21,8 +21,7 @@
    <div class="span4">
       <div class="span3"><h4><p>Opciones</p></h4></div>
       <ul class="nav">
-         <li class="span3">1º opcion</li>   
-         <li class="span3">2º opción</li>
+         <li class="span3">Incidencias</li>
          @if(User::isAdmin())
             <li class="span3"> {{ HTML::link('admin', 'Administración')}}</li>
          @endif
@@ -34,11 +33,11 @@
 
 @section('content')
 
-   <h1>Dashboard</h1>
+   <h1>Bienvenido {{ Session::get('username')}} </h1>
    <p>Welcome to your Dashboard. You rock!</p>
 
-   {{ Session::get('id')}}
+  <!-- {{ Session::get('id')}}
    {{ Session::get('username')}}
-   {{ Session::get('user_type')}}
+   {{ Session::get('user_type')}}-->
 
 @stop

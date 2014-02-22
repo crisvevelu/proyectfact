@@ -44,22 +44,18 @@
     		<th>Opciones</th>
        	</tr>
        	@foreach ($productos as $producto) 
-	       	@if (($producto->cantidad)<=0 )
-	       		
-	       	@else
-		       	<tr>
+	       	<tr>
 		       		<td>{{$producto->nombre}}</td>
 		       		<td>{{$producto->cantidad}}</td>
 		       		<td>{{$producto->descripcion}}</td>
 		       		@if ($producto->imagen) 
-		       			<td>{{ HTML::link($producto->imagen, 'Imagen') }}</td>
+		       			<td>{{ HTML::link($producto->imagen, 'Imagen', 'target="_blank"') }}</td>
 		       		@else
 		       			<td>Producto sin imagen</td>
 		       		@endif
 		       			
 		       		<td>{{ HTML::link('productos/modificar/'. $producto->id, 'Modificar', array('class' => 'btn btn-primary')) }} </td>
 		       	</tr>
-		      @endif
        	@endforeach
     </table>
   @endif

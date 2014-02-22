@@ -162,6 +162,19 @@
 				return Redirect::back()->with('message', 'Hay errores:')->withErrors($validator)->withInput();
 			}
 		}
+		public function getGestlistados() {
+			//$clientes = Cliente::all();
+			//$clientes = DB::table('clientes')->lists('title', 'name');
+
+			 $clientes = DB::table('clientes')->remember(10)->get();
+
+			return View::make('admin.clientes.listados')->with('clientes', $clientes);
+			//return View::make('admin.clientes.listados', $clientes);
+		}
+
+		public function postGestlistados() {
+			return 'Gestionar Listados';
+		}
 		/**
 		* Funciones productos
 		*/
@@ -204,23 +217,31 @@
 					$upload_success=$file->move($destinationPath, $filename);
 					if($upload_success){
 						$producto->nombre = Input::get('nombre');
-						$producto->cantidad = Input::get('cantidad');
+						if (Input::get('cantidad')<0){
+							return Redirect::to('admin/productos/modificar/'.$id)->with('message', 'Hay errores: La cantidad no puede tener un valor negativo'); 
+						}else{
+							$producto->cantidad = Input::get('cantidad');
+						}
 						$producto->descripcion = Input::get('descripcion');
 						$producto->imagen = $destinationPath . $filename;
 						$producto->save();
 						return Redirect::to('admin/productos/listar')->with('message', 'Producto modificado correctamente');
 					}else{
-						return Redirect::to('admin/productos/modificar')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
+						return Redirect::to('admin/productos/modificar/'.$id)->with('message', 'Hay errores:')->withErrors($validator)->withInput();
 					}
 				}
 				
 				$producto->nombre = Input::get('nombre');
-				$producto->cantidad = Input::get('cantidad');
+				if (Input::get('cantidad')<0){
+					return Redirect::to('admin/productos/modificar/'.$id)->with('message', 'Hay errores: La cantidad no puede tener un valor negativo'); 
+				}else{
+					$producto->cantidad = Input::get('cantidad');
+				}
 				$producto->descripcion = Input::get('descripcion');		
 				$producto->save();
 				return Redirect::to('admin/productos/listar')->with('message', 'Producto modificado correctamente');
 			}else{
-				return Redirect::to('admin/productos/modificar')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
+				return Redirect::to('admin/productos/modificar/'.$id)->with('message', 'Hay errores:')->withErrors($validator)->withInput();
 			}
 		}
 		public function getEliminarProducto($id)

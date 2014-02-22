@@ -34,17 +34,22 @@ Route::group(array('before' => 'auth'), function() {
 
 		Route::get('admin/usuarios/delete/{id}', 'AdminController@getDelete');
 		Route::get('admin/usuarios/register', 'AdminController@getRegister');
+		Route::get('/admin/usuarios/modificar/{id}', 'AdminController@getModificaruser');
+		Route::post('/admin/usuarios/modificar/{id}', 'AdminController@postModificaruser');
+
 		Route::get('/admin/clientes/mostar/{codcliente}', 'AdminController@getMostrar');
 		Route::get('/admin/clientes/archivar/{codcliente}', 'AdminController@postArchivar');
 		Route::get('/admin/clientes/antiguos/', 'AdminController@getAntiguos');
 		Route::get('/admin/clientes/modificar/{codcliente}', 'AdminController@getModificar');
 		Route::post('/admin/clientes/modificar/{codcliente}', 'AdminController@postModificar');
-		Route::get('/admin/usuarios/modificar/{id}', 'AdminController@getModificaruser');
-		Route::post('/admin/usuarios/modificar/{id}', 'AdminController@postModificaruser');
+		Route::get('/admin/clientes/gestlistados/', 'AdminController@getGestlistados');
+		Route::post('/admin/clientes/gestlistados/', 'AdminController@postGestlistados');
+
 		Route::get('/admin/productos/listar', 'AdminController@getMostrarProductos');
 		Route::get('/admin/productos/eliminar/{id}', 'AdminController@getEliminarProducto');
 		Route::get('/admin/productos/modificar/{id}', 'AdminController@getModificarProductos');
 		Route::post('/admin/productos/modificar/{id}', 'AdminController@postModificarProductos');
+
 		Route::controller('admin', 'AdminController');
 	});
 

@@ -31,11 +31,11 @@
 @section('content')
    {{ Form::open(array('url'=>'clientes/anadir', 'class'=>'form')) }}
    <h2 class="form-signup-heading">Añadir Clientes</h2>
-      <ul>
+     <!-- <ul>
          @foreach($errors->all() as $error)
             <li>{{ $error }}</li>
          @endforeach
-      </ul>
+      </ul>-->
        <div class="span5 row">
       {{ Form::label('cif', 'CIF/NIF') }}
       {{ Form::text('cif', null, array('class'=>'input-block-level', 'placeholder'=>'CIF / NIF')) }}

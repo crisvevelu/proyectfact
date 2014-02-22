@@ -44,7 +44,11 @@ class ProductoController extends BaseController
 				if($upload_success){
 					$producto = new Producto();
 					$producto->nombre = Input::get('nombre');
-					$producto->cantidad = Input::get('cantidad');
+					if (Input::get('cantidad')<0){
+						return Redirect::to('/productos/anadir')->with('message', 'Hay errores: La cantidad no puede tener un valor negativo'); 
+					}else{
+						$producto->cantidad = Input::get('cantidad');
+					}
 					$producto->descripcion = Input::get('descripcion');
 					$producto->imagen = $destinationPath . $filename;
 					$producto->save();
@@ -55,7 +59,11 @@ class ProductoController extends BaseController
 			}
 			$producto = new Producto();
 			$producto->nombre = Input::get('nombre');
-			$producto->cantidad = Input::get('cantidad');
+			if (Input::get('cantidad')<0){
+				return Redirect::to('/productos/anadir')->with('message', 'Hay errores: La cantidad no puede tener un valor negativo'); 
+			}else{
+				$producto->cantidad = Input::get('cantidad');
+			}
 			$producto->descripcion = Input::get('descripcion');		
 			$producto->save();
 			return Redirect::to('/productos/listar')->with('message', 'Añadido nuevo producto');
@@ -91,23 +99,31 @@ class ProductoController extends BaseController
 				$upload_success=$file->move($destinationPath, $filename);
 				if($upload_success){
 					$producto->nombre = Input::get('nombre');
-					$producto->cantidad = Input::get('cantidad');
+					if (Input::get('cantidad')<0){
+						return Redirect::to('/productos/modificar/'.$id)->with('message', 'Hay errores: La cantidad no puede tener un valor negativo'); 
+					}else{
+						$producto->cantidad = Input::get('cantidad');
+					}
 					$producto->descripcion = Input::get('descripcion');
 					$producto->imagen = $destinationPath . $filename;
 					$producto->save();
 					return Redirect::to('/productos/listar')->with('message', 'Producto modificado correctamente');
 				}else{
-					return Redirect::to('/productos/modificar')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
+					return Redirect::to('/productos/modificar/'.$id)->with('message', 'Hay errores:')->withErrors($validator)->withInput();
 				}
 			}
 			
 			$producto->nombre = Input::get('nombre');
-			$producto->cantidad = Input::get('cantidad');
+			if (Input::get('cantidad')<0){
+				return Redirect::to('/productos/modificar/'.$id)->with('message', 'Hay errores: La cantidad no puede tener un valor negativo'); 
+			}else{
+				$producto->cantidad = Input::get('cantidad');
+			}
 			$producto->descripcion = Input::get('descripcion');		
 			$producto->save();
 			return Redirect::to('/productos/listar')->with('message', 'Producto modificado correctamente');
 		}else{
-			return Redirect::to('/productos/modificar')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
+			return Redirect::to('/productos/modificar/'.$id)->with('message', 'Hay errores:')->withErrors($validator)->withInput();
 		}
 
 	}

@@ -38,5 +38,8 @@ class Cliente extends Eloquent {
 		'p_web' => '',
 		'logo' => 'mimes:png,jpeg',
 	);
-//regex:[A-Za-z0-9-.]|
+
+	public static $rules_masiva = array (
+		'smasiva' => 'required',
+	);
 }

@@ -31,6 +31,19 @@
 @stop
 <!--Contenido-->
 @section('content')
+  <!--
+   Conprobamos si se produce algun error y mostramos que tipo de error y cuantos
+   @if ($errors->any())
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Por favor corrige los siguentes errores:</strong>
+      <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+      </ul>
+    </div>
+  @endif-->
 	<!--Formulario-->
    {{ Form::open(array('url'=>'productos/anadir', 'files'=>true ,'class'=>'form')) }}
    <h2 class="form-signup-heading">Añadir Productos</h2>

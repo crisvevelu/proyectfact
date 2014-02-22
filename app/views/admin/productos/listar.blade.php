@@ -53,10 +53,7 @@
     		<th>Acciones</th>
        	</tr>
        	@foreach ($productos as $producto) 
-	       	@if (($producto->cantidad)<=0 )
-	       		
-	       	@else
-		       	<tr>
+	       <tr>
 		       		<td>{{$producto->nombre}}</td>
 		       		<td>{{$producto->cantidad}}</td>
 		       		<td>{{$producto->descripcion}}</td>
@@ -69,7 +66,6 @@
   		       		<td>{{ HTML::link('admin/productos/modificar/'. $producto->id, 'Modificar', array('class' => 'btn btn-primary')) }} <br /><br />
                 {{HTML::link('admin/productos/eliminar/'.$producto->id, 'Eliminar', array('class'=>'btn btn-danger'))}}</td>
   		       </tr>
-		      @endif
        	@endforeach
     </table>
   @endif

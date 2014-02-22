@@ -108,45 +108,41 @@ header('Content-Type: text/html; charset=UTF-8');
 		}
 
 		public function postAnadirmasiva() {
-			if (Input::hasFile('smasiva')) {
+
+			$mensajes = array (
+				'required' => 'Campo Obligatorio',
+			);
+
+			$validator = Validator::make(Input::all(), Cliente::$rules_masiva, $mensajes);
+			if ( $validator->passes() && Input::hasFile('smasiva') ) {
 				$smasiva = Input::file('smasiva');
 
 				$fh = fopen($smasiva, "r");
-				//$texto = "";
 
-				$cif = "";
-				$razonsocial = "";
-				$direccion1 = "";
-				$direccion2 = "";
-				$localidad = "";
-				$provincia = "";
-				$pais = "";
-				$cpostal = "";
-				$telefono1 = "";
-				$telefono2 = "";
-				$email = "";
-				$web = "";
-				$logo = "";
-				$estado = "";
-
-				$datos[][] = array();
-				while (( $data = fgetcsv ( $fh , 1000 , ";" )) !== FALSE ) { // Mientras hay líneas que leer...
-					//$data = fgetcsv ( $fh , 1000 , ";" );
-					$i = 0;
-					foreach($data as $row) {
-						//$texto .= "Campo $i: $row<br />"; // Muestra todos los campos de la fila actual 
-
-					
-					$datos[$i][$row] = $data;
-					$i++ ;
-
+				$datosBd = array('codcliente', 'cif', 'razonsocial', 'direccion1', 'direccion2' , 'localidad', 'pais', 'cpostal', 'telefono1', 'telefono2', 'email', 'web', 'logo', 'estado');
+				
+				while ($data = fgetcsv ( $fh, 1000, ';')) {
+					$i=0;
+					$cliente= new Cliente;
+					foreach ($data as $linea => $elemento) {
+						//if(Cliente::where('codcliente', '=', '$elemento') || Cliente::where('cif', '=', '$elemento') || Cliente::where('email', '=', '$elemento') )							
+						//{
+						//	$linea ++;
+						//}else{	
+							if ($elemento!='' || $elemento!=' ') {
+								$cliente->$datosBd[$i]=$elemento;
+							}
+							//return "ACIERTO";
+							$i++;
+						//}
+						
 					}
+					$cliente->save();
 				}
-				fclose ( $fh );
+				return Redirect::to('/clientes/listar')->with('message', 'Añadidos '. $i .' clientes');
 
-				return $datos;
 			}else {
-				return 'Error';
+				return Redirect::to('/clientes/anadir')->with('message', 'Hay errores:')->withErrors($validator)->withInput();
 			}
 		}
 

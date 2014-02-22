@@ -2,6 +2,9 @@ body {
    padding-top: 40px;
 }
  
+.help-block{
+	color: red;
+}
 .form-signup, .form-signin {
    width: 400px;
    margin: 0 auto;
