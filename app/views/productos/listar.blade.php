@@ -24,17 +24,19 @@
    <div class="span4">
       <div class="span3"><h4><p>Productos</p></h4></div>
       <ul class="nav">
-         <li class="span3">{{ HTML::link('productos/listar', 'Listar Productos') }}</li>   
-         <li class="span3 active">{{ HTML::link('productos/anadir', 'Añadir Nuevo Producto') }}</li>
+         <li class="span3 active">{{ HTML::link('productos/listar', 'Listar Productos') }}</li>   
+         <li class="span3 ">{{ HTML::link('productos/anadir', 'Añadir Nuevo Producto') }}</li>
+          <li class="span3">{{ HTML::link('productos/buscar', 'Buscar') }}</li>
       </ul>
    </div>
 @stop
 <!--Contenido-->
 @section('content')
+<h1>Listar Productos</h1>
   @if(empty($productos)) 
     <p>No hay productos disponibles</p>
   @else 
-    <h1>Listar Productos</h1>
+    
     <table class="table table-striped">
     	<tr>
     		<th>Nombre</th>

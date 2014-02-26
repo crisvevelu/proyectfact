@@ -254,6 +254,56 @@
 			$producto->delete();
 			return Redirect::to('admin/productos/listar')->with('message', 'Producto eliminado correctamente');
 		}
+		public function getBuscarProductos()
+	{
+		return View::make('productos.buscar');
+	}
+	public function postBuscarProductos()
+	{
+		/*
+			Funcion para buscar coincidencias en la base de datos
+		*/
+			
+			$campo = Input::get('criterio');
+			//valor es el valor introducido para buscar
+			$valor= Input::get('valor');
+			$opciones = array(0 => '0', 1 => 'nombre', 2 => 'cantidad', 3 => 'descripcion' );
+			$criterio = $opciones[$campo];
+			if ($valor==" " || $valor==""){
+				
+				return Redirect::to('/productos/buscar')->with('message', 'Debe de introducir un valor para buscar en la base de datos');
+			}else{
+				switch ($campo) {
+					case 0:
+						return Redirect::to('/productos/buscar')->with('message', 'Hay errores: debe de seleccionar el criterio de busqueda.');
+						
+					case 1:
+						if (is_string($valor) && !(preg_match( ('/^[0-9]+$/') , $valor))){
+							$consulta= DB::select('SELECT * FROM productos WHERE '.$criterio.' LIKE "'. $valor. '"');
+							return View::make('productos.listar')->with('productos',$consulta);
+						}else{
+							return Redirect::to('/productos/buscar')->with('message', 'Hay errores: debe introducir un texto.');
+						}
+						
+					case 2:
+						if (preg_match( ('/^[0-9]+$/') , $valor)){
+							$consulta= DB::select('SELECT * FROM productos WHERE '.$criterio.' LIKE "'. $valor. '"');
+							return View::make('productos.listar')->with('productos',$consulta);
+						}else{
+							return Redirect::to('/productos/buscar')->with('message', 'Hay errores: debe introducir un numero.');
+						}
+						
+					case 3:
+						if (is_string($valor)){
+							$consulta= DB::select('SELECT * FROM productos WHERE '.$criterio.' LIKE "%'. $valor. '%"');
+							return View::make('productos.listar')->with('productos',$consulta);
+						}else{
+							return Redirect::to('/productos/buscar')->with('message', 'Hay errores: debe introducir un texto.');
+						}
+				}
+			}
+			
+	}
 
 	}
 ?>

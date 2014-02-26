@@ -26,6 +26,7 @@
       <ul class="nav">
          <li class="span3">{{ HTML::link('productos/listar', 'Listar Productos') }}</li>   
          <li class="span3 active">{{ HTML::link('productos/anadir', 'Añadir Nuevo Producto') }}</li>
+          <li class="span3">{{ HTML::link('productos/buscar', 'Buscar') }}</li>
       </ul>
    </div>
 @stop

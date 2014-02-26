@@ -1,6 +1,6 @@
 @extends('layouts.main') <!--para usar la estructura  indicada en layouts/main.blade.php-->
 @section('titulo')<!--Titulo que queremos que aparezca en nuestra página-->
-   <title>Listar Productos</title>
+   <title>Buscar Productos</title>
 @stop
 <!--menu de navegación (superior)-->
 @section('navbar')
@@ -34,40 +34,20 @@
 
       <div class="span3"><h4><p>Opciones Productos</p></h4></div>
       <ul class="nav">
-         <li class="span3 active">{{ HTML::link('admin/productos/listar', 'Listado') }}</li>
-         <li class="span3">{{ HTML::link('admin/productos/buscar', 'Buscar') }}</li>
+         <li class="span3">{{ HTML::link('admin/productos/listar', 'Listado') }}</li>
+         <li class="span3 active">{{ HTML::link('admin/productos/buscar', 'Buscar') }}</li>
       </ul>
    </div>
 @stop
 <!--Contenido-->
 @section('content')
-  @if(empty($productos)) 
-    <p>No hay productos disponibles</p>
-  @else 
-    <h1>Listar Productos</h1>
-    <table class="table table-striped">
-    	<tr>
-    		<th>Nombre</th>
-    		<th>Cantidad</th>
-    		<th>Descripción</th>
-    		<th>Imagen</th>
-    		<th>Acciones</th>
-       	</tr>
-       	@foreach ($productos as $producto) 
-	       <tr>
-		       		<td>{{$producto->nombre}}</td>
-		       		<td>{{$producto->cantidad}}</td>
-		       		<td>{{$producto->descripcion}}</td>
-		       		@if ($producto->imagen) 
-		       			<td>{{ HTML::link($producto->imagen, 'Imagen') }}</td>
-		       		@else
-		       			<td>Producto sin imagen</td>
-		       		@endif
-		       			
-  		       		<td>{{ HTML::link('admin/productos/modificar/'. $producto->id, 'Modificar', array('class' => 'btn btn-primary')) }} <br /><br />
-                {{HTML::link('admin/productos/eliminar/'.$producto->id, 'Eliminar', array('class'=>'btn btn-danger'))}}</td>
-  		       </tr>
-       	@endforeach
-    </table>
-  @endif
+   <h1>Buscar productos</h1>
+   {{ Form::open(array('url'=>'admin/productos/buscar', 'class'=>'form')) }}
+      {{ Form::label('criterio', 'Seleccione el criterio de busqueda por el que desea buscar:') }}
+      {{ Form::select('criterio', array('Seleccione una opción','Nombre', 'Cantidad', 'Descripcion'),'Seleccione una opcion' ,array(0,1,2,3)) }}
+      {{ Form::text('valor', null, array('class'=>'input-block-level', 'placeholder'=>'Buscar ...')) }}
+      {{ Form::submit('Buscar', array('class'=>'btn btn-large btn-primary btn-block'))}}
+   {{ Form::close() }}
+
+   
 @stop

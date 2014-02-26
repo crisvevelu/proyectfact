@@ -49,6 +49,8 @@ Route::group(array('before' => 'auth'), function() {
 		Route::get('/admin/productos/eliminar/{id}', 'AdminController@getEliminarProducto');
 		Route::get('/admin/productos/modificar/{id}', 'AdminController@getModificarProductos');
 		Route::post('/admin/productos/modificar/{id}', 'AdminController@postModificarProductos');
+		Route::get('/admin/productos/buscar', 'AdminController@getBuscarProductos');
+		Route::post('/admin/productos/buscar', 'AdminController@postBuscarProductos');
 
 		Route::controller('admin', 'AdminController');
 	});
@@ -67,6 +69,9 @@ Route::group(array('before' => 'auth'), function() {
 	Route::post('/productos/anadir', 'ProductoController@postAnadir');
 	Route::get('/productos/modificar/{id}', 'ProductoController@getModificar');
 	Route::post('/productos/modificar/{id}', 'ProductoController@postModificar');
+	Route::get('/productos/buscar', 'ProductoController@getBuscar');
+	Route::post('/productos/buscar', 'ProductoController@postBuscar');
+
 	Route::controller('productos', 'ProductoController');
 });
 
