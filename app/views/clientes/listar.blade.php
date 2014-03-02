@@ -21,11 +21,12 @@
 
 @section('navlateral')
    <div class="span4">
-      <div class="span3"><h4><p>Prueba de columna lateral</p></h4></div>
+      <div class="span3"><h4><p>Opciones clientes</p></h4></div>
       <ul class="nav">
-         <li class="span3">{{ HTML::link('clientes/listar', 'Listar Clientes') }}</li>   
+         <li class="span3 active">{{ HTML::link('clientes/listar', 'Listar Clientes') }}</li>   
          <li class="span3">{{ HTML::link('clientes/anadir', 'Añadir Nuevos Clientes') }}</li>
-         <li class="span3 active">{{ HTML::link('clientes/clistado', 'Crear Listado') }}</li>
+         <li class="span3">{{ HTML::link('clientes/buscar', 'Buscar') }}</li>
+         <li class="span3">{{ HTML::link('clientes/clistado', 'Crear Listado') }}</li>
       </ul>
    </div>
 @stop
@@ -51,12 +52,12 @@
           <tr>
             <td>{{ $cliente->codcliente }}</td>
             <td>{{ $cliente->cif }}</td>
-            <td>{{ HTML::link('clientes/home/'.$cliente->codcliente, $cliente->razonsocial) }}</td>
+            <td>{{ HTML::link('clientes/homecliente/'.$cliente->codcliente, $cliente->razonsocial) }}</td>
             <td>{{ $cliente->localidad }}</td>
             <td>{{ $cliente->provincia }}</td>
             <td>{{ $cliente->telefono1 }}</td>
             <td>{{ $cliente->email }}</td>
-            <td>{{ HTML::link('#', 'Modificar', array('class' => 'btn btn-primary')) }} {{ HTML::link('ocultar/'.$cliente->codcliente, 'Archivar cliente', array('class' => 'btn btn-primary')) }}</td>
+            <td>{{ HTML::link('clientes/modificar/'.$cliente->codcliente, 'Modificar', array('class' => 'btn btn-primary')) }} {{ HTML::link('ocultar/'.$cliente->codcliente, 'Archivar cliente', array('class' => 'btn btn-primary')) }}</td>
           </tr>
         @endif
       @endforeach

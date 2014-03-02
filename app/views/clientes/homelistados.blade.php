@@ -21,7 +21,7 @@
 
 @section('navlateral')
    <div class="span4">
-      <div class="span3"><h4><p>Prueba de columna lateral</p></h4></div>
+      <div class="span3"><h4><p>Opciones clientes</p></h4></div>
       <ul class="nav">
          <li class="span3">{{ HTML::link('clientes/listar', 'Listar Clientes') }}</li>   
          <li class="span3 active">{{ HTML::link('clientes/anadir', 'Añadir Nuevos Clientes') }}</li>

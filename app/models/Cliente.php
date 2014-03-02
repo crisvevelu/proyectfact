@@ -5,9 +5,10 @@ class Cliente extends Eloquent {
 	public $timestamps = false;
 	//Forzar el cambio de la clave primaria, sirve para forzar a cambiar el id (por defecto) por otro campo
 	protected $primaryKey = 'codcliente';
+	protected $perPage = 5;
 
 	public static $rules = array(
-		'cif' => 'required|alpha|min:2|unique:clientes',
+		'cif' => 'required|min:2|unique:clientes',
 		'razonsocial' => 'required|unique:clientes',
 		'direccion1' => 'required',
 		'direccion2' => '',

@@ -21,15 +21,16 @@
 
 @section('navlateral')
    <div class="span4">
-      <div class="span3"><h4><p>Prueba de columna lateral</p></h4></div>
+      <div class="span3"><h4><p>Opciones clientes</p></h4></div>
       <ul class="nav">
          <li class="span3">{{ HTML::link('clientes/listar', 'Listar Clientes') }}</li>   
          <li class="span3 active">{{ HTML::link('clientes/anadir', 'Añadir Nuevos Clientes') }}</li>
+         <li class="span3">{{ HTML::link('clientes/buscar', 'Buscar') }}</li>
       </ul>
    </div>
 @stop
 @section('content')
-   {{ Form::open(array('url'=>'clientes/anadir', 'class'=>'form')) }}
+   {{ Form::open(array('url'=>'clientes/anadir', 'files'=>true ,'class'=>'form')) }}
    <h2 class="form-signup-heading">Añadir Clientes</h2>
      <!-- <ul>
          @foreach($errors->all() as $error)
@@ -37,15 +38,15 @@
          @endforeach
       </ul>-->
        <div class="span5 row">
-      {{ Form::label('cif', 'CIF/NIF') }}
+      {{ Form::label('cif', '*  CIF/NIF') }}
       {{ Form::text('cif', null, array('class'=>'input-block-level', 'placeholder'=>'CIF / NIF')) }}
       <span class="help-block">{{ $errors->first('cif') }}</span>
 
-      {{ Form::label('razonsocial', 'Razon Social') }}
+      {{ Form::label('razonsocial', '* Razon Social') }}
       {{ Form::text('razonsocial', null, array('class'=>'input-block-level', 'placeholder'=>'Razon Social')) }}
       <span class="help-block">{{ $errors->first('razonsocial') }}</span>
 
-      {{ Form::label('direccion1', 'Dirección 1') }}
+      {{ Form::label('direccion1', '* Dirección 1') }}
       {{ Form::text('direccion1', null, array('class'=>'input-block-level', 'placeholder'=>'Dirección 1')) }}
       <span class="help-block">{{ $errors->first('direccion1') }}</span>
 
@@ -72,7 +73,7 @@
       {{ Form::text('cod_postal', null, array('class'=>'input-block-level', 'placeholder'=>'Código Postal')) }}
       <span class="help-block">{{ $errors->first('cod_postal') }}</span>
 
-      {{ Form::label('telefono1', 'Telefono 1') }}
+      {{ Form::label('telefono1', '* Telefono 1') }}
       {{ Form::text('telefono1', null, array('class'=>'input-block-level', 'placeholder'=>'Telefono 1')) }}
       <span class="help-block">{{ $errors->first('telefono1') }}</span>
 
@@ -80,7 +81,7 @@
       {{ Form::text('telefono2', null, array('class'=>'input-block-level', 'placeholder'=>'Telefono 2')) }}
       <span class="help-block">{{ $errors->first('telefono2') }}</span>
 
-      {{ Form::label('email', 'E-mail') }}
+      {{ Form::label('email', '* E-mail') }}
       {{ Form::text('email', null, array('class'=>'input-block-level', 'placeholder'=>'E-mail')) }}
       <span class="help-block">{{ $errors->first('email') }}</span>
 
@@ -89,10 +90,10 @@
       <span class="help-block">{{ $errors->first('p_web') }}</span>
 
       {{ Form::label('logo', 'Logo') }}
-      <!--{{ Form::text('logo', null, array('class'=>'input-block-level', 'placeholder'=>'Logo')) }}-->
+      {{ Form::file('logo') }}
       <span class="help-block">{{ $errors->first('logo') }}</span>
 
-      {{ Form::file('image') }}
+      
 
       {{ Form::label('estado_cliente', 'Estado Cliente') }}
       {{ Form::select('estado_cliente', array(

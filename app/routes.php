@@ -55,7 +55,15 @@ Route::group(array('before' => 'auth'), function() {
 		Route::controller('admin', 'AdminController');
 	});
 
+	Route::get('/clientes/anadir', 'ClientesController@getAnadir');
+	Route::post('/clientes/anadir', 'ClientesController@postAnadir');
+	Route::get('/clientes/modificar/{codcliente}', 'ClientesController@getModificar');
+	Route::post('/clientes/modificar/{codcliente}', 'ClientesController@postModificar');
+	Route::get('/clientes/homecliente/{codcliente}', 'ClientesController@getMostrarHomeCliente');
+	Route::post('/clientes/homecliente/{codcliente}', 'ClientesController@postMostrarHomeCliente');
 	Route::post('/clientes/anadir/anadirmasiva', 'ClientesController@postAnadirmasiva');
+	Route::get('/clientes/buscar', 'ClientesController@getBuscar');
+	Route::post('/clientes/buscar', 'ClientesController@postBuscar');
 	Route::controller('users', 'UsersController');
 	Route::controller('clientes', 'ClientesController');
 	Route::get('/ocultar/{codcliente}', 'ClientesController@postOcultar');
